@@ -4,7 +4,7 @@
 class Polynomial{
     private :
     int degree;
-    float coef[MAX_DEGREE];
+    float coef[MAX_DEGREE]; 
     public :
     Polynomial(){};
     ~Polynomial(){};
@@ -32,7 +32,6 @@ class Polynomial{
             }
         }
     }
-
     void negate(){
         for(int i = degree; i>=0; i--){
             coef[i] = -coef[i];
