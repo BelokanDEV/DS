@@ -32,6 +32,13 @@ class Polynomial{
             }
         }
     }
+    void sub(Polynomial p1, Polynomial p2){
+        if (p1.degree >= p2.degree) degree = p1.degree;
+        else degree = p2.degree;
+        for(int i = degree; i>=0; i--){
+            coef[i] = p1.coef[i] - p2.coef[i];
+    }
+    }
     void negate(){
         for(int i = degree; i>=0; i--){
             coef[i] = -coef[i];
@@ -39,13 +46,27 @@ class Polynomial{
     }
     bool isZero() { return ((degree == 0) && (coef[0] == 0)); }
 
-
     void display(char *str = " Poly = "){
         printf("%s ",str);
         for(int i = degree; i>0; i--){
+            if( coef[i] == 0 ){ continue; }
+            else if( coef[i] == 1 ){
+                printf("X^%d + ",i);
+            }
+            else{
             printf("%5.1fX^%d + ",coef[i], i);
+            }
         }
-        printf("%5.1f\n", coef[0]);
+        if( coef[0] == 0 ){}
+        else { 
+            printf("%5.1f\n", coef[0]); 
+        }
+    }
+    void trim(){
+        for(int i = degree; i>=0; i--){
+            if (coef[i] == 0) { degree--;}
+            if (coef[i] != 0) { break; }
+        }
     }
 };
 
@@ -54,10 +75,7 @@ int main (void){
     p1.read();
     p2.read();
 
-    p3.add(p1, p2);
-    p3.display("p1 + p2 = ");
-
-    p3.mult(p1,p2);
-    p3.display("p1 * p2 = ");
+    p3.sub(p1, p2);
+    p3.display("p1 - p2 = ");
     return 0;
 }
