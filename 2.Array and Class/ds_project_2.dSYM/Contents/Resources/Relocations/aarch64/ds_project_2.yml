@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/jomyeong-geun/Documents/GitHub/DS/2.Array and Class/ds_project_2'
+relocations:
+  - { offsetInCU: 0x7DF, offset: 0x7DF, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000038A4, symSize: 0x230 }
+  - { offsetInCU: 0x908, offset: 0x908, size: 0x8, addend: 0x0, symName: __ZN10PolynomialC1Ev, symObjAddr: 0x230, symBinAddr: 0x100003AD4, symSize: 0x2C }
+  - { offsetInCU: 0x930, offset: 0x930, size: 0x8, addend: 0x0, symName: __ZN10Polynomial4readEv, symObjAddr: 0x25C, symBinAddr: 0x100003B00, symSize: 0xC8 }
+  - { offsetInCU: 0x970, offset: 0x970, size: 0x8, addend: 0x0, symName: __ZN10Polynomial3addES_S_, symObjAddr: 0x324, symBinAddr: 0x100003BC8, symSize: 0x90 }
+  - { offsetInCU: 0x9CE, offset: 0x9CE, size: 0x8, addend: 0x0, symName: __ZN10PolynomialD1Ev, symObjAddr: 0x3B4, symBinAddr: 0x100003C58, symSize: 0x2C }
+  - { offsetInCU: 0x9F6, offset: 0x9F6, size: 0x8, addend: 0x0, symName: __ZN10Polynomial7displayEv, symObjAddr: 0x3EC, symBinAddr: 0x100003C90, symSize: 0xAC }
+  - { offsetInCU: 0xA36, offset: 0xA36, size: 0x8, addend: 0x0, symName: __ZN10Polynomial4multES_S_, symObjAddr: 0x498, symBinAddr: 0x100003D3C, symSize: 0x90 }
+  - { offsetInCU: 0xA94, offset: 0xA94, size: 0x8, addend: 0x0, symName: __ZN10PolynomialC2Ev, symObjAddr: 0x528, symBinAddr: 0x100003DCC, symSize: 0x14 }
+  - { offsetInCU: 0xABC, offset: 0xABC, size: 0x8, addend: 0x0, symName: __ZN10PolynomialD2Ev, symObjAddr: 0x53C, symBinAddr: 0x100003DE0, symSize: 0x14 }
+...
