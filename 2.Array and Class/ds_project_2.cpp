@@ -23,6 +23,15 @@ class Polynomial{
             coef[i] = p1.coef[i] + p2.coef[i];
         }
     }
+    void mult(Polynomial p1, Polynomial p2){
+        degree = p1.degree + p2.degree;
+        for(int i = 0; i<=MAX_DEGREE; i++) { coef[i] = 0; }
+        for(int i = p1.degree; i>=0; i--){
+            for(int j = p2.degree; j>=0; j--){
+                coef[i+j] += p1.coef[i] * p2.coef[j];
+            }
+        }
+    }
 
     void negate(){
         for(int i = degree; i>=0; i--){
@@ -32,7 +41,8 @@ class Polynomial{
     bool isZero() { return ((degree == 0) && (coef[0] == 0)); }
 
 
-    void display(){
+    void display(char *str = " Poly = "){
+        printf("%s ",str);
         for(int i = degree; i>0; i--){
             printf("%5.1fX^%d + ",coef[i], i);
         }
@@ -46,7 +56,9 @@ int main (void){
     p2.read();
 
     p3.add(p1, p2);
-    p3.display();
-    
+    p3.display("p1 + p2 = ");
+
+    p3.mult(p1,p2);
+    p3.display("p1 * p2 = ");
     return 0;
 }
