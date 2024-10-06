@@ -1,5 +1,6 @@
 // Infix2Postfix.cpp
 #include "ArrayStack.h"
+//if (A+B)*C => AB+C*
 
 inline int precedence ( char op ){
     switch( op ) {
@@ -16,7 +17,12 @@ void infix2Postfix( FILE *fp = stdin ){
     ArrayStack st;
 
     while((c=getc(fp)) != '\n' ){
-        if( c == '
+        if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')'){
+            op = c;
+            for(int i = 0; i<= st.data[top]; i++){
+                if( precedence(op) < precedence(st.data[i]) )
+            }
+        }
     }
 }
 

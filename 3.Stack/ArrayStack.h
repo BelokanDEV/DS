@@ -21,26 +21,18 @@ class ArrayStack{
     
     void push(int item){
         if ( isFull() == true ) { error("THIS STACK IS FULL"); }
-        else{
-            top = top + 1;
-            data[top] = item;
-        }
+        else{ data[++top] = item; }
     }
     int pop(){
         int e;
         if ( isEmpty() == true ) { error("THIS STACK IS EMPTY"); }
-        else{
-            e = data[top];
-            top = top - 1;
-        }
+        else{ e = data[top--]; }
         return e;
     }
     int peek(){
         int e;
         if ( isEmpty() == true ) { error("THIS STACK IS EMPTY"); }
-        else{
-            e = data[top];
-        }
+        else{ e = data[top]; }
         return e;
     }
     void display(){
