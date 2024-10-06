@@ -7,23 +7,23 @@ bool checkMatching( char* filename ){
     ArrayStack stack;
     char ch, ch2;
 
-    int qCheck, dqCheck, lineCmt, mlineCmt;
+    int bSingle, bDouble, bLineCmt, bMlineCmt;
 
-    qCheck = dqCheck = lineCmt = mlineCmt = 0;
+    bSingle = bDouble = bLineCmt = bMlineCmt = 0;
     while((ch=getc(fp))!=EOF){
         ch2 = getc(fp);
         ungetc(ch2, fp);
         if(ch == '\n') { nLine++; }
         nChar++;
 
-        if((lineCmt == 1) && (ch == '\n')) { lineCmt = 0; }
-        if((mlineCmt == 1) && ((ch == '*') && (ch2 == '/'))) { mlineCmt = 0; }
-        if(ch == 39 ) {qCheck = !qCheck; }
-        if(ch == 34 ) {dqCheck = !dqCheck; }
-        if((lineCmt == 0) && ((ch == '/')&&(ch2 == '/'))) { lineCmt = 1; }
-        if((mlineCmt == 0) && ((ch == '*')&&(ch2 == '/'))) { mlineCmt = 1; }
+        if((bLineCmt == 1) && (ch == '\n')) { bLineCmt = 0; }
+        if((bMlineCmt == 1) && ((ch == '*') && (ch2 == '/'))) { bMlineCmt = 0; }
+        if(ch == 39 ) {bSingle = !bSingle; }
+        if(ch == 34 ) {bDouble = !bDouble; }
+        if((bLineCmt == 0) && ((ch == '/')&&(ch2 == '/'))) { bLineCmt = 1; }
+        if((bMlineCmt == 0) && ((ch == '*')&&(ch2 == '/'))) { bMlineCmt = 1; }
 
-        if(qCheck || dqCheck || lineCmt || mlineCmt) {continue;}
+        if(bSingle || bDouble || bLineCmt || bMlineCmt) {continue;}
         if( ch == '[' || ch == '(' || ch == '{') { stack.push(ch); }
             else if( ch == ']' || ch == ')' || ch == '}') {
                 int prev = stack.pop();
