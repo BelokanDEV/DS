@@ -13,7 +13,7 @@ class LinkedQueue{
     bool isEmpty() {return ((front == NULL)&&(rear == NULL)); }
     void enqueue (Node* e){
         if( !isEmpty() ){
-            rear->link = e;
+            rear->setLink(e);
             rear = e;
         }
         else{
@@ -21,16 +21,20 @@ class LinkedQueue{
         }
     }
     Node* dequeue (){
+        if (isEmpty()){ return NULL; }
+        else{
         Node* p = front;
-        front = p->link;
+        front = p->getLink();
+        if( front == NULL ){ rear = NULL; }
         return p;
+        }
     }
     Node* peek(){ return front; }
     void display(){
-        printf("큐 내용 : ")
-        for(Node* i = front; (*i) != NULL; i = i->getLink()){
+        printf("큐 내용 : ");
+        for(Node* i = front; i != NULL; i = i->getLink()){
             i->display();
         }
-        printf("\n")
+        printf("\n");
     }
 };
