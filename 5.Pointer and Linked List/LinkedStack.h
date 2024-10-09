@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "StudentNode.h"
 class LinkedStack{
     Node* top;
     public :
