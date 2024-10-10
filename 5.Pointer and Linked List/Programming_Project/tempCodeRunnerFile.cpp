@@ -1,0 +1,2 @@
+maze.searchExit();
+    // maze.print();

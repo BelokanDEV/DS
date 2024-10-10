@@ -18,7 +18,7 @@ bool isValidLoc( int r, int c ){
 
 int main () {
     stack<Location2D> locStack;
-    Location2D entry(1,0)
+    Location2D entry(1,0);
     locStack.push(entry);
 
     while (locStack.empty()==false){
@@ -35,9 +35,9 @@ int main () {
         else {
             map[r][c] = '.';
             if(isValidLoc( r-1, c)) { locStack.push(Location2D(r-1,c)); }
-            if(isValidLoc( r+1, c)) { locStack.push(Location2D(r-1,c)); }
-            if(isValidLoc( r, c-1)) { locStack.push(Location2D(r-1,c)); }
-            if(isValidLoc( r, c+1)) { locStack.push(Location2D(r-1,c)); }
+            if(isValidLoc( r+1, c)) { locStack.push(Location2D(r+1,c)); }
+            if(isValidLoc( r, c-1)) { locStack.push(Location2D(r,c-1)); }
+            if(isValidLoc( r, c+1)) { locStack.push(Location2D(r,c+1)); }
         }
     }
     printf("미로 탐색 실패!!\n");
