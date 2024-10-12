@@ -7,7 +7,6 @@ class Maze {
     Location2D* entryLoc; // 미로 입구 위치
     Location2D* exitLoc;  // 미로 출구 위치
     Location2D* tempLoc;  // 미로 현재 위치
-    LinkedStack S; // Location2D를 데이터로 갖는 노드의 연결리스트 스택 생성
 public:
     Maze() {
         entryLoc = new Location2D;
@@ -18,7 +17,7 @@ public:
 
     ~Maze() {
         reset();
-        delete entryLoc; // 동적 할당된 객체 해제
+        delete entryLoc; 
         delete exitLoc;
         delete tempLoc;
     }
@@ -63,7 +62,7 @@ public:
         }
     }
 
-    // 맵 정보 : 0(벽), 1(길), 5(입구), 9(출구)
+    // 맵 정보 : 0(벽), 1(길), 2(지나온 경로), 3(최적화 경로), 4(교차로), 5(입구), 9(출구)
     void print() {
         printf("[ 전체 미로의 크기 = %d x %d ]\n", width, height);
         for (int i = 0; i < height; i++) {
@@ -71,8 +70,6 @@ public:
                 if (map[i][j] == 0) { printf("■ "); }
                 else if (map[i][j] == 1) { printf("  "); }
                 else if (map[i][j] == 2) { printf("□ "); }
-                else if (map[i][j] == 3) { printf("☆ "); }
-                else if (map[i][j] == 4) { printf("@ "); } // 교차로 -> 4
                 else if (map[i][j] == 5) { printf("○ "); }
                 else if (map[i][j] == 9) { printf("◎ "); }
             }
@@ -84,13 +81,11 @@ public:
         if (r < 0 || c < 0 || r >= height || c >= width) { return false; }
         else { return map[r][c] == 1 || map[r][c] == 9; }
     }
-    bool optIsValidLoc(int r, int c) {
-        if (r < 0 || c < 0 || r >= height || c >= width) { return false; }
-        else { return map[r][c] == 2 || map[r][c] == 9; }
-    }
 
     void searchExit() {
+        LinkedStack S;
         S.push(entryLoc);
+        int count = 0;
         while (S.isEmpty() == false) {
             int r, c;
             tempLoc = S.pop();
@@ -101,72 +96,20 @@ public:
                 return;
             }
             else {
-                map[r][c] = 2; // 지나간 길을 표시
+                map[r][c] = 2; // 지나간 경로를 표시
+                count = 0;
                 if (isValidLoc(r - 1, c)) {
-                    S.push(new Location2D(r - 1, c));
+                    S.push(new Location2D(r - 1, c)); 
                 }
                 if (isValidLoc(r + 1, c)) {
-                    S.push(new Location2D(r + 1, c));
+                    S.push(new Location2D(r + 1, c)); 
                 }
                 if (isValidLoc(r, c - 1)) {
-                    S.push(new Location2D(r, c - 1));
+                    S.push(new Location2D(r, c - 1)); 
                 }
                 if (isValidLoc(r, c + 1)) {
-                    S.push(new Location2D(r, c + 1));
+                    S.push(new Location2D(r, c + 1)); 
                 }
-            }
-        }
-        printf("미로 탐색 실패\n");
-    }
-
-    void optExit() {
-        int count = 0;
-        LinkedStack optS;
-        Location2D* optLoc;
-        S.push(entryLoc);
-        while (S.isEmpty() == false) {
-            int r, c;
-            tempLoc = S.pop();
-            r = tempLoc->getRow();
-            c = tempLoc->getCol();
-            if (map[r][c] == 9) {
-                printf("미로 탐색 성공!!\n");
-                return;
-            }
-            else{
-                count = 0;
-                map[r][c] = 3; 
-                if (optIsValidLoc(r - 1, c)) {
-                    S.push(new Location2D(r - 1, c)); 
-                    count++;
-                }
-                if (optIsValidLoc(r + 1, c)) {
-                    S.push(new Location2D(r + 1, c));
-                    count++;
-                }
-                if (optIsValidLoc(r, c - 1)) {
-                    S.push(new Location2D(r, c - 1));
-                    count++;
-                }
-                if (optIsValidLoc(r, c + 1)) {
-                    S.push(new Location2D(r, c + 1));
-                    count++;
-                }
-                if (count>=2) { map[r][c] = 4; }
-            }
-        }
-        optS.push(entryLoc);
-        while(optS.isEmpty() == false) {
-            int r, c;
-            tempLoc = optS.pop();
-            r = tempLoc->getRow();
-            c = tempLoc->getCol();
-            if (map[r][c] == 9) {
-                printf("미로 탐색 성공!!\n");
-                return;
-            }
-            else{
-
             }
         }
         printf("미로 탐색 실패\n");

@@ -26,4 +26,13 @@ class LinkedStack{
         for(Location2D* p = top; p!=NULL; p=p->getLink()) { p->display(); }
         printf("\n");
     }
+    int size() {
+        int count = 0;
+        Location2D* temp = top;
+        while(top!=NULL){
+            count++;
+            temp = temp->getLink();
+        }
+        return count;
+    }
 };
