@@ -2,6 +2,11 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "cstdio": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp",
+        "__locale": "cpp"
     }
 }
