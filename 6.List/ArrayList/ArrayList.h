@@ -68,4 +68,5 @@ public:
         printf("\n");
     }
     void clear() { length = 0;}
+    
 };
