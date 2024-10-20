@@ -57,10 +57,7 @@ class Polynomial{
             printf("%5.1fX^%d + ",coef[i], i);
             }
         }
-        if( coef[0] == 0 ){}
-        else { 
-            printf("%5.1f\n", coef[0]); 
-        }
+        if( coef[0] != 0 ){ printf("%5.1f\n", coef[0]); }
     }
     void trim(){
         for(int i = degree; i>=0; i--){
