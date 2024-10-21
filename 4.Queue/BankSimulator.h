@@ -42,6 +42,7 @@ class BankSimulator
             printf("현재시각=%d\n", clock);
 
             if ( isNewCustomer() ) { InsertCustomer(clock); } // 랜덤하게 새로운 고객 입장
+            
             if ( serviceTime > 0) { serviceTime--; } // 현재 고객 서비스 중
             else { //서버가 서비스 중이 아닐 경우
                 if (que.isEmpty() ) continue; // 기다리는 고객이 없을경우 continue
