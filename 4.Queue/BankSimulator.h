@@ -64,11 +64,3 @@ class BankSimulator
         printf("    현재 대기 고객 수 = %d\n",nCustomers - nServedCustomers);
     }
 };
-int main() {
-    srand( (unsigned int) time(NULL) );
-    BankSimulator sim;
-    sim.readSimulationParameters();
-    sim.run();
-    sim.printStats();
-    return 0;
-}

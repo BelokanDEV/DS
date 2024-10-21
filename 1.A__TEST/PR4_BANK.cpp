@@ -23,8 +23,8 @@ class CustomerQueue{
 public :
     CustomerQueue()
     : front(0), rear(0) {}
-    bool isEmpty(){ front == rear; }
-    bool isFull(){ front == (rear+1)%MAX_QUEUE_SIZE; }
+    bool isEmpty(){ return front == rear; }
+    bool isFull(){ return front == (rear+1)%MAX_QUEUE_SIZE; }
     void enqueue(Customer n){
         if( isFull( )) { error("QUEUE IS FULL"); }
         rear = (rear+1)%MAX_QUEUE_SIZE;
