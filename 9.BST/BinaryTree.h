@@ -1,5 +1,5 @@
 //PROGRAM 8.2
-#include "CircularQueue.h"
+#include "BinaryNode.h"
 
 class BinaryTree{
     BinaryNode* root;
@@ -12,27 +12,9 @@ public :
     void inorder(){ printf("\n  inorder : "); inorder(root); }
     void preorder(){ printf("\n preorder : "); preorder(root); }
     void postorder(){ printf("\n postorder : "); postorder(root); }
-    void levelorder( ){
-        printf("\nlevelorder : ");
-        if(!isEmpty()){
-            CircularQueue q;
-            q.enqueue(root);
-            while(!q.isEmpty()){
-                BinaryNode* n = q.dequeue();
-                if(n != nullptr){
-                    printf(" [%c] ", n->getData());
-                    q.enqueue(n->getLeft());
-                    q.enqueue(n->getRight());
-                }
-            }
-        }
-        printf("\n");
-    }
     int getCount() {return isEmpty() ? 0 : getCount(root); }
     int getLeafCount() {return isEmpty() ? 0 : getLeafCount(root); }
     int getHeight() {return isEmpty() ? 0 : getHeight(root); }
-    int evaluate() { return evaluate(root); } // 후위 수식 연산
-    int calcSize() {return calcSize(root); } //이진 디렉토리 용량 계산
 private :
     void inorder(BinaryNode* node) { // LVR
         if(node!=nullptr) {
@@ -69,24 +51,5 @@ private :
         int hLeft = getHeight(node->getLeft());
         int hRight = getHeight(node->getRight());
         return (hLeft>hRight) ? hLeft+1 : hRight+1;
-    }
-    int evaluate(BinaryNode *node){
-        if(node == nullptr) return 0;
-        if(node->isLeaf()) return node->getData();
-        else{
-            int op1 = evaluate(node->getLeft());
-            int op2 = evaluate(node->getRight());
-            switch(node->getData()){
-                case '+' : return op1+op2;
-                case '-' : return op1-op2;
-                case '*' : return op1*op2;
-                case '/' : return op1/op2;
-            }
-            return 0;
-        }
-    }
-    int calcSize(BinaryNode* node){
-        if(node == nullptr) return 0;
-        return node->getData() + calcSize(node->getLeft()) + calcSize(node->getRight());
     }
 };
