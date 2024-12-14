@@ -7,7 +7,7 @@ public :
     : root(nullptr) {}
     void setRoot(BinaryNode* n){root = n;}
     BinaryNode* getRoot(){return root;}
-    bool isEmpty(){return root = nullptr; }
+    bool isEmpty(){return root == nullptr; }
 
     void inorder(){
         printf("\n inorder : ");
@@ -21,9 +21,15 @@ public :
         printf("\n postorder : ");
         postorder(root);
     }
-    int getCount(){}
-    int getHeight(){}
-    int getLeftCount(){}
+    int getCount(){
+        return isEmpty() ? 0 : getCount(root);
+    }
+    int getLeafCount(){
+        return isEmpty() ? 0 : getLeafCount(root);
+    }
+    int getHeight(){
+        return isEmpty() ? 0 : getHeight(root);
+    }
 
 private :
     void inorder(BinaryNode* n){
@@ -49,6 +55,18 @@ private :
     }
     int getCount(BinaryNode* n){
         if(n==nullptr) return 0;
-        return 1 + getCount(n->getLeft()) + getCount(n->getRight()); 
+        else return 1 + getCount(n->getLeft()) + getCount(n->getRight()); 
+    }
+    int getLeafCount(BinaryNode* n){
+        if(n==nullptr) return 0;
+        if(n->isLeaf()) return 1;
+        else return  getLeafCount(n->getLeft()) + getLeafCount(n->getRight());
+            
+    }
+    int getHeight(BinaryNode* n){
+        if(n==nullptr) return 0;
+        int hLeft = getHeight(n->getLeft());
+        int hRight = getHeight(n->getRight());
+        return (hLeft>hRight) ? hLeft+1 : hRight+1;
     }
 };

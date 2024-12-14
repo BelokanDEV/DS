@@ -14,5 +14,5 @@ public :
     int getData() {return data;}
     BinaryNode* getLeft() {return left;}
     BinaryNode* getRight() {return right;}
-    bool isLeaf() {return (left==nullptr)&&(right=nullptr); }
+    bool isLeaf() {return (left==nullptr)&&(right==nullptr); }
 };

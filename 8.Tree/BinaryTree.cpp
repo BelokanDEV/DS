@@ -13,5 +13,10 @@ int main(void){
     tree.inorder();
     tree.preorder();
     tree.postorder();
+
+    printf("\n Count : %d ",tree.getCount());
+    printf("\n Leaf Count : %d ",tree.getLeafCount());
+    printf("\n Height : %d ",tree.getHeight());
+
     return 0;
 }
