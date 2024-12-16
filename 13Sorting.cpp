@@ -1,16 +1,34 @@
 #include <cstdio>
-#define MAX_ELEMENT 200
-<<<<<<< HEAD
-class HeapNode{
-    int key;
-public :
-    HeapNode(int k = 0)
-    : key(k){}
-    void setKey(int k){key = k;}
-    int getKey(){ return key; }
-    void display(){ printf("%4d", key); }
+#include <cstdlib>
+#define MAX_QUEUE_SIZE 20
+
+inline void error(char* str){
+    printf("%s",str);
+    error(1);
 }
-=======
+class CircularQueue{
+    int data[MAX_QUEUE_SIZE];
+    int front;
+    int rear;
+public :
+    CircularQueue()
+    : {front = rear = 0;}
+    ~CircularQueue(){}
+    bool isFull(){ return front == (rear+1) % MAX_QUEUE_SIZE; }
+    bool isEmpty(){ return front == rear; }
+    void enqueue(int val){
+        if(isFull()){error("QUEUE IS FULL !");}
+        rear = (rear+1)%MAX_QUEUE_SIZE;
+        data[rear] = val;
+    }
+    int dequeue(){
+        if(isEmpty()){error("QUEUE IS EMPTY!");}
+        front = (front+1)%MAX_QUEUE_SIZE;
+        return data[front];
+    }
+};
+#include <cstdio>
+#define MAX_ELEMENT 200
 
 class HeapNode {
     int key;
@@ -21,13 +39,10 @@ public :
     int getKey(){ return key; }
     void display(){printf("%4d", key);}
 };
->>>>>>> 062a92d358937a8737e4839ee07287af52c829f5
 
-class MaxHeap{
+class MaxHeap
+{
     HeapNode node[MAX_ELEMENT];
-<<<<<<< HEAD
-}
-=======
     int size;
 public:
     MaxHeap() : size(0) {}
@@ -80,4 +95,3 @@ public:
         printf("\n---------------------------------------------");
     }
 };
->>>>>>> 062a92d358937a8737e4839ee07287af52c829f5
