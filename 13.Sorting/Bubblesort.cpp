@@ -32,6 +32,6 @@ int main(){
     initRandom(list,n);
     printArray(list,n,"Original ");
     bubbleSort(list, n);
-    printArray(list, n, "Selection ");
+    printArray(list, n, "bubble");
     return 0;
 }

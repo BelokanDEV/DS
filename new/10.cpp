@@ -111,7 +111,7 @@ public :
             iRight = i*2 + 1;
 
             if(iLeft <= len && list[iLeft] > list[i]) return 0;
-            if(iLeft <= len && list[iRight] > list[i]) return 0;
+            if(iRight <= len && list[iRight] > list[i]) return 0;
         }
         return 1;
     };

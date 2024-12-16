@@ -39,6 +39,6 @@ int main(){
     initRandom(list,n);
     printArray(list,n,"Original ");
     shellSort(list, n);
-    printArray(list, n, "Selection ");
+    printArray(list, n, "Shell Sorting ");
     return 0;
 }

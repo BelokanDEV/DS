@@ -61,7 +61,7 @@ void selectionSort(int list[], int n)
 	int i, j, least;
 	for (i = 0; i<n - 1; i++) {
 		least = i;
-		for (j = i + 1; j<n; j++)	// �ּҰ� Ž��
+		for (j = i + 1; j<n; j++)	// �ּҰ� Ž��
 		if (list[j]<list[least]) least = j;
 		swap(&list[i], &list[least]);
 
@@ -70,7 +70,7 @@ void selectionSort(int list[], int n)
 }
 
 //====================================================================
-// Insertion Sort (���ڵ� ���, �� �Լ��� ����ϴ� ���)
+// Insertion Sort (���ڵ� ���, �� �Լ��� ����ϴ� ���)
 //====================================================================
 typedef struct CRecord {
 	int		key;
@@ -228,27 +228,35 @@ void radixSort(int list[], int n)
 //====================================================================
 // Quick Sort
 //====================================================================
-static int partition(int list[], int left, int right)
-{
-	int low = left;
-	int high = right + 1;
-	int pivot = list[left];
-	do {
-		do {
-			low++;
-		} while (low <= right &&list[low]<pivot);
+static int partition(int list[], int left, int right) {
+    int low = left + 1;   // 피벗 바로 오른쪽부터 시작
+    int high = right;     // 배열의 마지막 요소부터 시작
+    int pivot = list[left]; // 피벗: 배열의 첫 번째 요소
 
-		do {
-			high--;
-		} while (high >= left && list[high]>pivot);
+    while (low <= high) { // low와 high가 엇갈릴 때까지 반복
+        // low를 오른쪽으로 이동: 피벗보다 큰 값을 찾을 때까지
+        while (low <= right && list[low] < pivot) {
+            low++;
+        }
 
-		if (low<high)
-			swap(&list[low], &list[high]);
-	} while (low<high);
+        // high를 왼쪽으로 이동: 피벗보다 작은 값을 찾을 때까지
+        while (high >= left && list[high] > pivot) {
+            high--;
+        }
 
-	swap(&list[left], &list[high]);
-	return high;
+        // low와 high가 엇갈리지 않았으면 값을 교환
+        if (low < high) {
+            swap(&list[low], &list[high]);
+        }
+    }
+
+    // 피벗과 high 위치의 값을 교환 (피벗을 제자리에 둠)
+    swap(&list[left], &list[high]);
+
+    // high 위치가 피벗의 최종 위치
+    return high;
 }
+
 
 void quickSort(int list[], int left, int right)
 {
