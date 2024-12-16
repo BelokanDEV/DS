@@ -23,6 +23,7 @@ int isMinHeapIter(int* list, int len) {
 	}
 	return 1;
 }
+
 int isMaxHeapIter(int* list, int len) {
 	int i, iLeft, iRight;
 	for (i = 1; i < len; i++) {
@@ -55,8 +56,8 @@ void main()
 
 
 	//========================================================
-	printf("(1) MaxHeap (Á¤·ÄµÇÁö ¾ÊÀº ¹è¿­)\n");
-	printf("(2) MinHeap (Á¤·ÄµÈ ¿¬°á ¸®½ºÆ®)\n");
+	printf("(1) MaxHeap (ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­)\n");
+	printf("(2) MinHeap (ï¿½ï¿½ï¿½Äµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®)\n");
 	for (i = 0; i < MAXELEM; i++) {
 		val = rand() % 100;
 		qMax.insert(val);
@@ -75,20 +76,20 @@ void main()
 	}
 
 	//========================================================
-	printf("(3) Èü Á¶°Ç °Ë»ç\n");
+	printf("(3) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½\n");
 	printf(" MIN LIST: ");
 	for (i = 0; i <= MAXELEM; i++)
 		printf("%2d ", lMin[i]);
 	printf("\n");
 
 	val = isMinHeapRecur(lMin, MAXELEM, 1);
-	printf(" ÃÖ¼ÒÈü Á¶°ÇÀÌ %s(¼øÈ¯)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½ï¿½È¯)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMinHeapIter(lMin, MAXELEM);
-	printf(" ÃÖ¼ÒÈü Á¶°ÇÀÌ %s(¹İº¹)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½İºï¿½)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMaxHeapRecur(lMin, MAXELEM, 1);
-	printf(" ÃÖ´ëÈü Á¶°ÇÀÌ %s(¼øÈ¯)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½ï¿½È¯)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMaxHeapIter(lMin, MAXELEM);
-	printf(" ÃÖ´ëÈü Á¶°ÇÀÌ %s(¹İº¹)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½İºï¿½)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 
 	printf("\n MAX LIST: ");
 	for (i = 0; i <= MAXELEM; i++)
@@ -96,12 +97,12 @@ void main()
 	printf("\n");
 
 	val = isMinHeapRecur(lMax, MAXELEM, 1);
-	printf(" ÃÖ¼ÒÈü Á¶°ÇÀÌ %s(¼øÈ¯)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½ï¿½È¯)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMinHeapIter(lMax, MAXELEM);
-	printf(" ÃÖ¼ÒÈü Á¶°ÇÀÌ %s(¹İº¹)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½İºï¿½)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMaxHeapRecur(lMax, MAXELEM, 1);
-	printf(" ÃÖ´ëÈü Á¶°ÇÀÌ %s(¼øÈ¯)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½ï¿½È¯)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 	val = isMaxHeapIter(lMax, MAXELEM);
-	printf(" ÃÖ´ëÈü Á¶°ÇÀÌ %s(¹İº¹)\n", (val == 0) ? "Æ²¸²" : "¸ÂÀ½");
+	printf(" ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s(ï¿½İºï¿½)\n", (val == 0) ? "Æ²ï¿½ï¿½" : "ï¿½ï¿½ï¿½ï¿½");
 
 }

@@ -12,6 +12,7 @@ public :
     BinaryNode* getRight(){return right;}
     bool isLeaf(){return left==nullptr && right==nullptr; }
 
+//
     void inorder() {
         if (left!=nullptr) left->inorder();
         printf("[%2d]",data);
