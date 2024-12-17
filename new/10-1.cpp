@@ -1,15 +1,17 @@
 #include <cstdio>
 #include <cstdlib>
-#define MAX_ELEM 20
+#define MAX_ELEMENT 20
 #define MAXELEM 20
 
 class MaxPriorityQueue{
-    int elem[MAX_ELEM];
+public :
     int size;
+    int elem[MAX_ELEMENT];
 public :
     MaxPriorityQueue()
-    :size(0){}
+    : size(0) {}
     ~MaxPriorityQueue(){}
+
     void insert(int val){
         elem[size++] = val;
     }
@@ -17,46 +19,33 @@ public :
         int i, max, imax;
         max = elem[0];
         imax = 0;
-        for(i = 0; i<size; i++){
+        for(i=0;i<size;i++){
             if(max<elem[i]){
                 max = elem[i];
                 imax = i;
             }
         }
-        for(i = imax; i<size-1; i++){
+        for(i=imax;i<size-1;i++){
             elem[i] = elem[i+1];
         }
-    size--;
-    return max;
-    }
-    int find(){
-        int i, max, imax;
-        max = elem[0];
-        imax = 0;
-        for(i = 0 ; i < size; i++){
-            if(max<elem[i]){
-                max = elem[i];
-                imax = i;
-            }
-        }
+        size--;
         return max;
     }
     void display(){
-        int i;
-        printf("\nMaxPriorityQueue : ");
-        for(i = 0; i< size; i++){
-            printf("[%3d]", elem[i]);
+        for(int i = 0; i<size; i++){
+            printf("%d ",elem[i]);
         }
     }
 };
+
 class Node{
 public :
-    Node* link;
     int data;
+    Node* link;
 public :
     Node(int val)
-    : data(val){}
-    int getData(){return data;}
+    : data(val) {}
+    ~Node(){}
     void insertNext(Node* n){
         if(n!=nullptr){
             n->link = link;
@@ -66,24 +55,25 @@ public :
     Node* removeNext(){
         Node* removed = link;
         if(removed!=nullptr){
-            link = removed->link;
+        link = removed->link;
         }
         return removed;
     }
 };
-class minPriorityQueue{
+class MinPriorityQueue{
     Node org;
 public :
-    minPriorityQueue()
-    : org(0) {}
-    ~minPriorityQueue(){}
+    MinPriorityQueue()
+    : org(0){}
+    ~MinPriorityQueue(){}
     void insert(int val){
-        Node* prv = &(org);
-        while(prv->link != nullptr && prv->link->data < val)
-            prv = prv->link;
-        prv->insertNext(new Node(val));
+        Node* prev = &(org);
+        while(prev->link != nullptr && prev->link->data<val){
+            prev = prev->link;
+        }
+        prev->insertNext(new Node(val));
     }
-    int removed(){
+    int remove(){
         Node* n = org.link;
         if(n==nullptr) return -1;
 
@@ -94,42 +84,45 @@ public :
         return data;
     }
     int find(){
-        if(org.link != nullptr)
+        if(org.link != nullptr){
             return org.link->data;
+        }
         else return -1;
     }
-    void display(){
+    int display(){
         Node* n = org.link;
-        for(;n!=nullptr;n=n->link)
-            printf("%3d", n->data);
+        for( ; n!=nullptr ; n=n->link){
+            printf("%d ", n->data);
+        }
     }
 };
-    int isMaxHeapIter(int* list, int len){
-        int i, iLeft, iRight;
-        for(i = 1; i<len; i++){
-            iLeft = i*2;
-            iRight = i*2 + 1;
+int isMaxHeapIter(int* list, int len){
+    int i, iLeft, iRight;
+    for(i=1; i<len; i++){
+        iLeft = i*2;
+        iRight = i*2+1;
 
-            if(iLeft <= len && list[iLeft] > list[i]) return 0;
-            if(iRight <= len && list[iRight] > list[i]) return 0;
-        }
-        return 1;
-    };
-    int isMinHeapIter(int* list, int len){
-        int i, iLeft, iRight;
-        for(i = 1; i<len; i++){
-            iLeft = i*2;
-            iRight = i*2+1;
+        if(iLeft <= len && list[iLeft]>list[i]) return 0;
+        if(iRight <= len && list[iRight]>list[i]) return 0;
+    }
+    return 1;
+}
+int isMinHeapIter(int* list, int len){
+    int i, iLeft, iRight;
+    for(i = 1; i<len; i++){
+        iLeft = i*2;
+        iRight = i*2+1;
 
-            if(iLeft <= len && list[iLeft] < list[i]) return 0;
-            if(iRight <= len && list[iRight] < list [i]) return 0;
-        }
-        return 1;
-    };
+        if(iLeft<=len&&list[iLeft]<list[i]) return 0;
+        if(iRight<=len&&list[iLeft]<list[i]) return 0;
+    }
+    return 1;
+}
+
 int main(void){
     	int i, val, lMax[100], lMin[100];
 	MaxPriorityQueue qMax;
-	minPriorityQueue qMin;
+	MinPriorityQueue qMin;
 
 
 	//========================================================
@@ -145,7 +138,7 @@ int main(void){
 
 	lMin[0] = lMax[0] = -1;
 	for (i = 1; i <= MAXELEM; i++) {
-		val = qMin.removed();
+		val = qMin.remove();
 		printf("%2d %2d\n", val, qMax.remove());
 
 		lMin[i] = val;

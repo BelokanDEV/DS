@@ -36,7 +36,7 @@ public :
     }
     int getLeafCount(){
         if(isLeaf()) return 1;
-        int count = 1;
+        int count = 0;
         if(left!=nullptr) count += left->getLeafCount();
         if(right!=nullptr) count += right->getLeafCount();
         return count; 
